@@ -4,12 +4,12 @@ import "base64.sol";
 contract HelloWorld {
     string answer = "SGVsbG8gd29ybGQh";
 
-    constructor (HelloWorld) public payable {
+    constructor() public payable {
         require(msg.value == 1 ether);
     }
 
     function checkAnswer(string memory ans) public payable returns (string memory) {
-        string memory result = "Ops, you should check it again!";
+        string memory result = "Ops, you should check it and try again!";
 
         require(msg.value == 1 ether);
 
@@ -17,9 +17,7 @@ contract HelloWorld {
             msg.sender.transfer(address(this).balance);
             result = "Good job!";
         }
+
         return result;
     }
 }
-
-
-
