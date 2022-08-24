@@ -1,5 +1,5 @@
 pragma solidity ^0.5.0;
-import "base64.sol";
+import "./base64.sol";
 
 contract HelloWorld {
     string answer = "SGVsbG8gd29ybGQh";
@@ -17,7 +17,6 @@ contract HelloWorld {
             msg.sender.transfer(address(this).balance);
             result = "Good job!";
         }
-
         return result;
     }
 }
