@@ -1,12 +1,12 @@
-pragma solidity ^0.5.0;
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.6.0;
 
 contract Deposit {
-    uint balance;
-    address payer;
+    uint private vault;
+    address private payer;
 
-    constructor() public payable {
+    constructor() public {
         payer = tx.origin;
-        balance += msg.value;
     }
 
     modifier checkOwnership() {
@@ -20,21 +20,18 @@ contract Deposit {
     }
 
     function deposit() public payable checkOwnership {
-        balance += msg.value;
+        vault += msg.value;
     }
 
     function withdraw(uint amount) public notOwner {
-        require (balance >= amount);
-        balance -= amount;
-        msg.sender.transfer(address(this).balance);
+        require (vault >= amount);
+        vault -= amount;
+        msg.sender.transfer(amount);
     }
 
     function getBalance() public view returns (uint) {
-        return balance;
+        return vault;
     }
-
-    function debugTX() public view returns (address) { return tx.origin; }
-    function debugMSG() public view returns (address) { return msg.sender; }
 }
 
 

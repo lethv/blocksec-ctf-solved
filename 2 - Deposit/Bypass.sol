@@ -1,25 +1,23 @@
-pragma solidity ^0.5.0;
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.6.0;
 import "./Deposit.sol";
 
 
 contract Bypass {
-    address oaddr;
-    constructor(address _addr) public payable {
-        oaddr = _addr;
+    Deposit depos;
+
+    constructor(address _addr) public {
+        depos = Deposit(_addr);
     }
 
-    function withdraw(uint _amount) public payable {
-        Deposit c = Deposit(oaddr);   
-        c.withdraw(_amount);
+    function withdraw(uint _amount) public {
+        depos.withdraw(_amount);
     }
 
-    function debugTX() public view returns (address) {
-        Deposit c = Deposit(oaddr);   
-        return c.debugTX();
+    function getBalance() public view returns (uint) {
+    return address(this).balance;
     }
 
-    function debugMSG() public view returns (address) {
-        Deposit c = Deposit(oaddr);   
-        return c.debugMSG();
+    receive() external payable{
     }
 }
