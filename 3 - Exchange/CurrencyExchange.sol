@@ -6,8 +6,8 @@ contract CurrencyExchange {
   mapping(address => uint256) balancesUSD;
   mapping(address => uint256) balancesEUR;
 
-    uint256 constant USD_PRICE = 0.0005 ether;
-    uint256 constant EUR_PRICE = 0.0006 ether;
+  uint256 constant USD_PRICE = 0.0005 ether;
+  uint256 constant EUR_PRICE = 0.0006 ether;
 
   constructor() public payable {
   }
