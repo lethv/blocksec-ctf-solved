@@ -17,6 +17,10 @@ En este caso, la solución implementada mediante contratos es un exchange de div
 mediante ethers. También tienen la posibilidad de intercambiar divisas entre si. El objetivo es pues, conseguir comprar divisa a
 un precio inferior del estipulado.
 
-4 - Fallback
+4 - Auction
+En esta solución se pretende actuar como se haría en una subasta real. Siendo el propietario del contrato el organizador y quién puede decidir
+cuando finaliza y se define el ganador. Una vez finalizada la subasta, las pujas
+que no hayan ganado pueden ser retiradas. También el organizador podrá retirar la
+puja más alta.
 
 5 - Reentrancy
