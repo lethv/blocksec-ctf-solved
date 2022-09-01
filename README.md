@@ -13,14 +13,23 @@ realizar la retirada no sea el propietario.
 El objetivo pues, es conseguir retirar el dinero siendo propietario.
 
 3- Exchange
-En este caso, la solución implementada mediante contratos es un exchange de divisas. En este los usuarios pueden comprar EUR y USD 
-mediante ethers. También tienen la posibilidad de intercambiar divisas entre si. El objetivo es pues, conseguir comprar divisa a
-un precio inferior del estipulado.
+En este caso, la solución implementada mediante contratos es un exchange de divisas. En este los usuarios pueden comprar EUR y USD mediante ethers. También tienen la posibilidad de intercambiar divisas entre si.
+El objetivo es pues, conseguir comprar divisa a un precio inferior del estipulado.
 
 4 - Auction
 En esta solución se pretende actuar como se haría en una subasta real. Siendo el propietario del contrato el organizador y quién puede decidir
-cuando finaliza y se define el ganador. Una vez finalizada la subasta, las pujas
-que no hayan ganado pueden ser retiradas. También el organizador podrá retirar la
-puja más alta.
+cuando finaliza y se define el ganador. Una vez finalizada la subasta, las pujas que no hayan ganado pueden ser retiradas. También el organizador podrá retirar la puja más alta.
+El objetivo en este caso es alterar el funcionamiento correcto de la subasta para conseguir ganarla.
 
-5 - Reentrancy
+5 - TokenSale
+En este caso se trata de un contrato que funciona ofreciendo un servicio de compra y venta de tokens. En el flujo normal de funcionamiento el precio de compra y venta de tokens es exactamente el mismo.
+El objetivo es conseguir un beneficio con la compra y venta de tokens. 
+
+6 - Lottery
+Este desafío esta compuesto por un contrato que permite comprar boletos de loteria y decidir el número ganador. 
+Una vez vendidos los boletos, el propietario puede activar la funcionalidad para determinar el boleto ganador.
+
+
+7 - 
+
+8 -
