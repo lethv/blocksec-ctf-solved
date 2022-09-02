@@ -28,7 +28,6 @@ contract Roulette {
     }
 
     function playRoulette() public {
-
     }
 
 }
