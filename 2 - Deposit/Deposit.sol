@@ -3,7 +3,7 @@ pragma solidity ^0.6.0;
 
 contract Deposit {
     uint private vault;
-    address private payer;
+    address public payer;
 
     constructor() public {
         payer = tx.origin;
@@ -15,7 +15,7 @@ contract Deposit {
     }
 
     modifier notOwner() {
-        require(tx.origin != msg.sender, "Payer can't collect the payment");
+        require(payer != msg.sender, "Payer can't collect the payment");
         _;
     }
 
@@ -25,12 +25,16 @@ contract Deposit {
 
     function withdraw(uint amount) public notOwner {
         require (vault >= amount);
-        vault -= amount;
-        msg.sender.transfer(amount);
+        vault -= (amount * 1e18);
+        msg.sender.transfer(amount * 1e18);
     }
 
     function getBalance() public view returns (uint) {
         return vault;
+    }
+
+    function getPayer() public view returns (address) {
+        return payer;
     }
 }
 

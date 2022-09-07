@@ -4,8 +4,8 @@ pragma solidity ^0.6.0;
 contract Auction {
     address payable public organizer;
 
-    address public highestBidder;
-    uint public highestBid;
+    address private highestBidder;
+    uint private highestBid;
 
     mapping(address => uint) bids;
     bool finished;
@@ -17,6 +17,11 @@ contract Auction {
 
     modifier onlyOrganizer() {
         require(organizer == msg.sender, "Only the organizer can finish the auction");
+        _;
+    }
+
+    modifier auctioniFinished() {
+        require(finished, "Auction has not finished yet!");
         _;
     }
 
@@ -33,11 +38,7 @@ contract Auction {
         finished = true;
     }
 
-    function withdrawHighestBid() public onlyOrganizer returns (bool) {
-        require(finished, "Auction has not finished yet!");
-        
-        finished = true;
-
+    function withdrawHighestBid() public onlyOrganizer auctioniFinished returns (bool) {
         if (highestBid > 0) {
             uint toSend = highestBid;
             highestBid = 0;
@@ -50,7 +51,7 @@ contract Auction {
         return true;
     }
 
-    function withdrawBid() public returns (bool) {
+    function withdrawBid() public auctioniFinished returns (bool) {
         uint toRet = bids[msg.sender];
         if (toRet > 0) {
             bids[msg.sender] == 0;
@@ -63,8 +64,16 @@ contract Auction {
         return true;
     }
 
+    function getHighestBid() public view returns (uint) {
+        return highestBid;
+    }
+
+    function getkWinner() public auctioniFinished view returns (address) {
+        return highestBidder;
+    }
+
     // Finish auction if something fails
-    receive() external payable{
+    fallback() external {
         finished = true;
     }
 

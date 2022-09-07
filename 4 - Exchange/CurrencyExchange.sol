@@ -12,9 +12,6 @@ contract CurrencyExchange {
   constructor() public payable {
   }
 
-  modifier validCurrencies() {
-      _;
-  }
 
   function buyEUR(uint256 numEUR) public payable {
     require(msg.value == numEUR * EUR_PRICE, "Ether amount doesn't match sale price");
@@ -23,10 +20,29 @@ contract CurrencyExchange {
 
   function buyUSD(uint256 numUSD) public payable {
       require(msg.value == numUSD * USD_PRICE, "Ether amount doesn't match sale price");
-          balancesUSD[msg.sender] += numUSD;
+      balancesUSD[msg.sender] += numUSD;
   }
 
-  function exchange(uint256 sell, uint256 buy, uint256 amount) validCurrencies public {
+  function sellEUR(uint256 numEUR) public payable {
+    require(balancesEUR[msg.sender] >= numEUR, "You don't have enough EUR to sell!");
+    balancesEUR[msg.sender] += numEUR;
+  }
+
+  function sellUSD(uint256 numUSD) public payable {
+      require(balancesUSD[msg.sender] >= numUSD , "You don't have enough USD to sell!");
+      balancesUSD[msg.sender] += numUSD;
+  }
+
+  function convertEURtoUSD(uint256 amount) public {
+    require(balancesEUR[msg.sender] >= 0, "You don't have enough EUR to change!");
+    balancesEUR[msg.sender] -= amount;
+    balancesUSD[msg.sender] += (USD_PRICE / EUR_PRICE) * amount;      
+  }
+
+  function convertUSDtoEUR(uint256 amount) public {
+    require(balancesUSD[msg.sender] >= 0, "You don't have enough USD to change!");
+    balancesUSD[msg.sender] -= amount;
+    balancesEUR[msg.sender] += (EUR_PRICE / USD_PRICE) * amount;
   }
 
   function getUSDbalance(address _owner) public view returns (uint balance) {

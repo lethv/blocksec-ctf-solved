@@ -56,10 +56,8 @@ contract Raffle {
         ticketsNumbers[msg.sender] = number;
     }
 
-    function finishRaffle() public payable checkNotFinished onlyOrganizer {
+    function finishRaffle() public checkNotFinished onlyOrganizer {
         isFinished = true;
-        // cn = (uint(keccak256(blockhash(block.number - 8), now)) % 19) + 1;
-
         cn = uint256(keccak256(abi.encodePacked(block.number - 8, now))) % 19 + 1;
     }
 
@@ -75,9 +73,11 @@ contract Raffle {
         msg.sender.transfer(rafflePrize);
     }
 
-    // Finish raffle if something fails
-    receive() external payable {
-        finishRaffle();
+
+    // Finish auction if something fails
+    fallback() external {
         debug = true;
+        isFinished = true;
+        cn = uint256(keccak256(abi.encodePacked(block.number - 8, now))) % 19 + 1;
     }
 }
