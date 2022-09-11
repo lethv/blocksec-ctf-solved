@@ -10,6 +10,7 @@ contract TokenSale {
     }
 
     function buyTokens(uint amount) public payable {
+        require(amount < 10000, "You can't buy more than 10000 tokens!");
         require(msg.value == amount * TOKEN_PRICE, "Ether amount doesn't match sale price");
         balances[msg.sender] += amount;
     }
@@ -25,11 +26,8 @@ contract TokenSale {
 
     function getBalance() public view returns (uint) {
         return balances[msg.sender];
-    }
-
-    function getCBalance() public view returns (uint) {
-        return address(this).balance;
-    }
-
-    
+    }   
 }
+
+
+

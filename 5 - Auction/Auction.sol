@@ -26,7 +26,7 @@ contract Auction {
     }
 
     function bid() public payable {
-        require (msg.value > highestBid, "You must beat the highest bid!");
+        require(msg.value > highestBid, "You must beat the highest bid!");
 
         bids[highestBidder] += highestBid;
         highestBidder = msg.sender;
@@ -68,7 +68,7 @@ contract Auction {
         return highestBid;
     }
 
-    function getkWinner() public auctioniFinished view returns (address) {
+    function getWinner() public auctioniFinished view returns (address) {
         return highestBidder;
     }
 
@@ -76,6 +76,5 @@ contract Auction {
     fallback() external {
         finished = true;
     }
-
 }
 

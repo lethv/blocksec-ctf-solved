@@ -45,7 +45,7 @@ El objetivo es conseguir un beneficio con la compra y venta de tokens.
 
 Explicación: en este desafío hay que aprovecharse de la vulnerabilidada de reentrada. Tras comprar y vender tokens, podemos hacer que en el momento de recibirlos, se vuelva a realizar una venta. Esta se realizará previa actualización de las cantidades, provocando que nos abonen dos veces el valor vendido.
 
-### 7 - Lottery
+### 7 - Raffle
 Este desafío esta compuesto por un contrato que permite comprar boletos de una rifa.
 Una vez vendidos los boletos, el propietario puede acabar el sorteo para determinar el boleto ganador. 
 Una vez más esta solución se adopta para no tener una dependencia temporal, en un entorno real el sorteo finalizaria automáticamente.

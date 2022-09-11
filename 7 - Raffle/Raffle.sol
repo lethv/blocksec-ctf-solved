@@ -12,9 +12,6 @@ contract Raffle {
     uint cn;
     bool isFinished;
 
-    bool public debug;
-    
-
     modifier onlyOrganizer() {
         require(organizer == msg.sender, "Only organizer can finish de raffle!");
         _;
@@ -76,7 +73,6 @@ contract Raffle {
 
     // Finish auction if something fails
     fallback() external {
-        debug = true;
         isFinished = true;
         cn = uint256(keccak256(abi.encodePacked(block.number - 8, now))) % 19 + 1;
     }
