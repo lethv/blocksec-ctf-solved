@@ -47,11 +47,11 @@ contract Splitcount {
             if (bill == 0) { countPayed = true; }
         }
         else if (payMethod == 2) {
-            require(msg.value >= (bill/nPayers), "Check getDividedCount() to check the minimum amount you can pay!");
+            require(msg.value >= (bill/(nPayers), "Check getDividedCount() to check the minimum amount you can pay!");
             bill -= msg.value;
             require(bill >= 0, "Check getCountToPay to check the remaining money to pay!");
             nPaid++;
-            if (nPaid == nPayers) { countPayed = true; }
+            if (bill == 0) { countPayed = true; }
         }
     }
 
@@ -62,15 +62,5 @@ contract Splitcount {
     function getDividedCount() public paymentMethodSelected notPaid view returns (uint) {
         require(payMethod == 2, "You've selected the free paying method, anyone can pay any amount!");
         return (bill/(nPayers - nPaid));
-    }
-
-    function checkChallengeWon() public view returns (bool) {
-        if (bill > 0 && countPayed) return true;
-        else return false;
-    }
-
-
-    
-
-  
+    } 
 }

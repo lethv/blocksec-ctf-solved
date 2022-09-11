@@ -30,14 +30,11 @@ El objetivo es pues, conseguir comprar divisa a un precio inferior del estipulad
 
 Explicación: generando un overflow que haga cumplir la condición de compra, se puede comprar una gran cantidad de divisa a un precio irrisorio. Esta puede ser vendida luego al precio estandar generando beneficio.
 
-
 ### 5 - Auction
 Esta solución pretende actuar como lo haría una subasta real. Ofreciendo la posibilidad de pujar, y otorgando la subasta a la puja más alta. Es el propietario del contrato el organizador y quién decide cuando finaliza la subasta y la puja más alta resulta ganadora. Esta solución es una simplifación, para no vincular el desafío a un espacio temporal. Una vez finalizada la subasta, las pujas que no hayan ganado pueden ser retiradas. También el organizador podrá retirar la puja más alta.
 El objetivo en este caso es alterar el funcionamiento correcto de la subasta para conseguir ganarla de forma arbitraria.
 
 Explicación: el contrato tiene configurada la función fallback, para acabar la subhasta en caso de error. Se puede forzar la ejecución de esta función cuando seamos la puja máxima, ganando así la subhasta.
-
-
 
 ### 6 - TokenSale
 En este caso se trata de un contrato que funciona ofreciendo un servicio de compra y venta de tokens. En el flujo normal de funcionamiento el precio de compra y venta de tokens es exactamente el mismo. 
@@ -54,4 +51,11 @@ El objetivo es conseguir ganar la loteria más de una vez.
 Explicación: para conseguir superar este desafío hay que combinar dos vulnerabilidades. Por una parte hay que precacular el número ganador de la rifa y forzar la ejecución de la función fallback. Al forzarla finalizará la rifa y se calculará el ganador. Por último hay un fallo en la lógica del contrato, ya que una vez otorgado el premio, este no comprueba si ya se ha entregado. Por tanto se puede reclamar el premio infinidad de veces.
 
 
-### 8 - Logic flaw II
+### 8 - Splitcount
+Este desafío se basa en un contrato que ofrece el servicio de dividir la cuenta en, por ejemplo, un restaurante. El contrato se crea por el negocio indicando la cantidad a pagar y el número de comensales. Una vez desplegado los clientes deberan indicar como quieren dividir la cuenta, si en modo libre (cualquiera puede aportar lo que quiera) o dividir la cuenta entre todos. En este segunda modalidad, cada persona debe pagar almenos la parte equivalente a repartir la cuenta a partes iguales entre todos los comensales. 
+Una vez se ha pagado el importe correcto el contrato marcará la cuenta como pagada.
+
+El objetico es conseguir un descuento, pagando la cuenta a un precio inferior al estipulado.
+
+Explicación: hay un fallo en la gestión del importe restante a pagar en la modalidad 2. Al poder pagar una persona más de lo que le tocaria (por ejemplo paga por 2), se recalcula mal la división. Se tiene en cuenta el importe correcto, pero se divide entre el total de comensales, reduciendo la factura restante más de la cuenta. Esto permite que con cada pago realizado, el importe mínimo que puede pagar el siguiente sea inferior. Una vez han pagado todos los comensales, la factura se da por pagada. 
+Si la condición de pago mínimo estuviese bien implementada, no habría problema en comprobar el pago utilizando el número de personas que han pagado. No obstante, la solución ideal ese siempre mirar la diferencia entre el importa pagado y el importe a pagar.
