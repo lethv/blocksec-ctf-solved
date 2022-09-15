@@ -24,7 +24,7 @@ contract TokenSale {
         balances[msg.sender] -= amount;
     }
 
-    function getBalance() public view  returns (uint) {
+    function getBalance() public view returns (uint) {
         return balances[msg.sender];
     }   
 }
