@@ -6,7 +6,7 @@ contract TokenSale {
     uint256 constant TOKEN_PRICE = 1 ether;
     mapping(address => uint) public balances;
 
-    constructor() public {
+    constructor() public payable {
     }
 
     function buyTokens(uint amount) public payable {
@@ -16,7 +16,7 @@ contract TokenSale {
     }
 
     function sellTokens(uint amount) public {
-        require(balances[msg.sender] >= amount);
+        require(balances[msg.sender] >= amount, "You don't have enought tokens to sell!");
 
         (bool sent, ) = msg.sender.call{value: (amount * 1000000000000000000)}("");
         require(sent, "Sale has failed, pleased try again!");
@@ -24,7 +24,7 @@ contract TokenSale {
         balances[msg.sender] -= amount;
     }
 
-    function getBalance() public view returns (uint) {
+    function getBalance() public view  returns (uint) {
         return balances[msg.sender];
     }   
 }

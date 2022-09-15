@@ -9,8 +9,6 @@ contract CurrencyExchange {
   uint256 constant USD_PRICE = 500000000000000 wei;
   uint256 constant EUR_PRICE = 600000000000000 wei;
 
-  uint public temp;
-
   constructor() public payable {
     require(msg.value >= 1 ether, "You have to fund this contract with at least 1 ether!");
   }
