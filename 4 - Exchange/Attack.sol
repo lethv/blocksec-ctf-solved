@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.6.0;
-import "./CurrencyExchange.sol";
+import "./Exchange.sol";
 
 
 contract Attack {

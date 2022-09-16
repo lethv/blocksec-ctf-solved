@@ -3,7 +3,7 @@ pragma solidity ^0.6.0;
 import "./Deposit.sol";
 
 
-contract Bypass {
+contract Attack {
     Deposit depos;
 
     constructor(address _addr) public {

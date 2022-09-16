@@ -69,8 +69,6 @@ contract Splitcount {
         else return false;
     }
 
-
-    
-
-  
+    receive() external  payable{
+    }
 }

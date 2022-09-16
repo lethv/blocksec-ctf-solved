@@ -38,7 +38,7 @@ contract Raffle {
     }
 
     constructor() public payable {
-        require(msg.value >= 15 ether);
+        require(msg.value >= 15 ether, "You should fund the contract to pay the winners!");
         organizer = msg.sender;
         rafflePrize =  15 ether;
         isFinished = false;
