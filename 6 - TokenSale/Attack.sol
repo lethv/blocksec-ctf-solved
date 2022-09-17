@@ -8,7 +8,7 @@ contract Attack {
 
     TokenSale public ts;
 
-    constructor(address _addr) public payable {
+    constructor(address payable _addr) public payable {
         require(msg.value >= 1 ether, "You need at least 1 ether to attack!");
         ts = TokenSale(_addr);
     }

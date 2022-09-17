@@ -6,7 +6,7 @@ import "./Auction.sol";
 contract Attack {
     Auction auc;
 
-    constructor(address _addr) public payable {
+    constructor(address payable _addr) public payable {
         auc = Auction(_addr);
     }
 

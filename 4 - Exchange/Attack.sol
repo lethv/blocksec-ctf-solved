@@ -6,7 +6,7 @@ import "./Exchange.sol";
 contract Attack {
     CurrencyExchange exch;
 
-    constructor(address _addr) public payable {
+    constructor(address payable _addr) public payable {
         exch = CurrencyExchange(_addr);
     }
 

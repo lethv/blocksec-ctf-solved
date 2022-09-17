@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.6.0;
 
-contract Splitcount {
+contract PatchedSplitcount {
     uint bill;
     uint nPayers;
     uint nPaid;
@@ -47,7 +47,7 @@ contract Splitcount {
             if (bill == 0) { countPayed = true; }
         }
         else if (payMethod == 2) {
-            require(msg.value >= (bill/(nPayers), "Check getDividedCount() to check the minimum amount you can pay!");
+            require(msg.value >= (bill/(nPayers - nPaid)), "Check getDividedCount() to check the minimum amount you can pay!");
             bill -= msg.value;
             require(bill >= 0, "Check getCountToPay to check the remaining money to pay!");
             nPaid++;
