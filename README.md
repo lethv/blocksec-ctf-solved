@@ -1,8 +1,8 @@
--- ES --
+###### -- ES --
 Bienvenido a este CTF de contratos inteligentes!
 En los siguientes desafíos vas a descubrir y explotar alguas de las vulnerabilidades y fallos más habituales en Solidity!
 
--- EN --
+###### -- EN --
 Welcome to this smart contract CTF!
 On the following challenges you're going to explore and exploit some of the most common vulnerabilities and flaws in Solidity smart contracts!
 Hope you enjoy it!
@@ -12,7 +12,7 @@ Este contrato solo quiere darte la bienvenida, pero para hacerlo tendrás que pr
 
 Explicación: basta con escribir Hello world!, la respuesta se encuentra en claro, pero encodeada en base64.
 
-### 2 - Deposit
+### 2 - Subscription
 El contrato en el que se basa este desafío tiene como objetivo solucionar el problema de la confianza a la hora de hacer un intercambio. Quitandole lógica para mayor simplificada, este contrato básicamente funciona como un déposito. Una vez se ha instanciado y depositado divisa por parte de su propietario, este ya no puede realizar una retirada del dinero. 
 El objetivo pues, es conseguir retirar el dinero siendo propietario.
 

