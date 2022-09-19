@@ -55,6 +55,11 @@ contract PatchedSplitcount {
         }
     }
 
+    function checkChallengeWon() public view returns (bool) {
+        if (bill > 0 && countPayed) return true;
+        else return false;
+    }
+
     function getCountToPay() public view returns (uint) {
         return bill;
     }

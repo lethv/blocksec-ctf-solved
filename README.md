@@ -13,9 +13,9 @@ Este contrato solo quiere darte la bienvenida, pero para hacerlo tendrás que pr
 Explicación: basta con escribir Hello world!, la respuesta se encuentra en claro, pero encodeada en base64.
 
 ### 2 - Subscription
-El contrato en el que se basa este desafío tiene como objetivo solucionar el problema de la confianza a la hora de hacer un intercambio. Quitandole lógica para mayor simplificada, este contrato básicamente funciona como un déposito. Una vez se ha instanciado y depositado divisa por parte de su propietario, este ya no puede realizar una retirada del dinero. 
-El objetivo pues, es conseguir retirar el dinero siendo propietario.
-
+El contrato permite realizar depósitos, pagar y consultar el saldo al usuario propietario. Permite también consultar el propietario del contrato de forma pública. La idea es sencilla, cuando toque hacer un pago, el propietario puede realizarlo de forma sencilla introduciendo la dirección de destino. 
+Esto se podría automatizar para realizar pagos automáticos de forma periódica.
+El objetivo en este caso consiste en realizar un pago sin ser el propietario, aprovechándose para retirar los fondos del contrato.
 Explicación: comprobación mediante tx.origin, se solventa con un Bypass.
 
 ### 3- Roulette

@@ -8,11 +8,11 @@ contract Subscription {
 
 
     constructor() public {
-        owner = tx.origin;
+        owner = msg.sender;
     }
 
     modifier checkOwnership() {
-        require(tx.origin == owner, "Only the owner can deposit or pay the fees");
+        require(msg.sender == owner, "Only the owner can deposit or pay the fees");
         _;
     }
 

