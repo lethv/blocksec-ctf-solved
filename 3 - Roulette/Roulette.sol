@@ -14,12 +14,12 @@ contract Roulette {
     modifier checkBet() {
         require(address(this).balance > 0, "It looks like this roulette is empty.. refer to the owner for a refill!");
         require(msg.value > 0, "An amount must be paid in order to bet!");
-        require(msg.value  <= address(this).balance, "Your bet is to high, use getMaximumBet to check for the limit!");
+        require(msg.value  <= address(this).balance, "Your bet is too high, use getMaximumBet to check for the limit!");
         _;
     }
 
     modifier checkPlay() {
-        require(betRed > 0 || betBlack > 0, "At least one bet have to be done to play!");
+        require(betRed > 0 || betBlack > 0, "At least one bet has to be done to play!");
         _;
     }
 

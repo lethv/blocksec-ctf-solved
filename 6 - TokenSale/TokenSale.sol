@@ -16,7 +16,7 @@ contract TokenSale {
     }
 
     function sellTokens(uint amount) public {
-        require(balances[msg.sender] >= amount, "You don't have enought tokens to sell!");
+        require(balances[msg.sender] >= amount, "You don't have enough tokens to sell!");
 
         (bool sent, ) = msg.sender.call{value: (amount * 1000000000000000000)}("");
         require(sent, "Sale has failed, pleased try again!");

@@ -34,7 +34,7 @@ contract Auction {
     }
 
     function finishAuction() public onlyOrganizer {
-        require(!finished, "Auction has already finished!");
+        require(!finished, "The auction has already finished!");
         finished = true;
     }
 
@@ -72,7 +72,7 @@ contract Auction {
         return highestBidder;
     }
 
-    // Finish auction if something fails
+    // Finish the auction if something fails
     fallback() external {
         finished = true;
     }

@@ -18,17 +18,17 @@ contract Raffle {
     }
 
     modifier checkFinished() {
-        require(isFinished, "Raffle hasn't finished yet!");
+        require(isFinished, "The raffle hasn't finished yet!");
         _;
     }
 
     modifier checkNotFinished() {
-        require(!isFinished, "Raffle has already finished!");
+        require(!isFinished, "The raffle has already finished!");
         _;
     }
 
     modifier winningPlayer() {
-        require(ticketsNumbers[msg.sender] == cn, "It looks like you're not the winning player this time.. good look on the next ones!");
+        require(ticketsNumbers[msg.sender] == cn, "It looks like you're not the winning player this time.. good look at the next ones!");
         _;
     }
 
@@ -45,7 +45,7 @@ contract Raffle {
     }
 
     function buyRafflewTicket(uint number) public payable checkNotFinished {
-        require(msg.value == TICKET_PRIZE, "Ticket price is exactly 1 ether");
+        require(msg.value == TICKET_PRIZE, "The ticket price is exactly 1 ether");
         require(number > 0 && number <= 20, "The number you can bid on must be between 1 and 20!");
         require(ticketsBought[number] != true, "This number has been already bought!");
 

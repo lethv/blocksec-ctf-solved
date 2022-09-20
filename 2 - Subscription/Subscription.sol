@@ -24,7 +24,7 @@ contract Subscription {
         require (vault >= MONTHLY_PAYMENT, "Insufficient funds to pay, please refill the contract!");
 
         (bool sent, ) = addr.call{value: MONTHLY_PAYMENT}("");
-        require(sent, "Transfer has failed, pleased try again!");
+        require(sent, "The transfer has failed, please try again!");
     }
 
     function getBalance() public view checkOwnership returns (uint) {

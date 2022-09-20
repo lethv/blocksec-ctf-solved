@@ -15,7 +15,7 @@ contract Splitcount {
     }
 
     modifier paymentMethodSelected() {
-        require(payMethod > 0, "You have to select a payment method first!");
+        require(payMethod > 0, "You have to select the payment method first!");
         _;
     }
 
@@ -43,13 +43,13 @@ contract Splitcount {
         require (msg.value > 0, "You have to send the amount to pay!");
         if (payMethod == 1) {
             bill -= msg.value;
-            require(bill >= 0, "Check getCountToPay to check the remaining money to pay!");
+            require(bill >= 0, "Check getCountToPay() to get the remaining money to pay!");
             if (bill == 0) { countPayed = true; }
         }
         else if (payMethod == 2) {
-            require(msg.value >= (bill/nPayers), "Check getDividedCount() to check the minimum amount you can pay!");
+            require(msg.value >= (bill/nPayers), "Check getDividedCount() to get the minimum amount you can pay!");
             bill -= msg.value;
-            require(bill >= 0, "Check getCountToPay to check the remaining money to pay!");
+            require(bill >= 0, "Check getCountToPay() to get the remaining money to pay!");
             nPaid++;
             if (nPaid == nPayers) { countPayed = true; }
         }
