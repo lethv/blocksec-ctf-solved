@@ -4,7 +4,7 @@ import "./Subscription.sol";
 
 
 contract Attack {
-    Deposit depos;
+    Subscription depos;
     address payable public owner;
     bool attacked = false;
 
